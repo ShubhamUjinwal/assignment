@@ -12,7 +12,7 @@ export class ApiService {
     this.ROOT_URL = 'https://random-data-api.com/api/coffee/random_coffee';
   }
 
-  get() {
-    return this.http.get(`${this.ROOT_URL}`);
+  get(size: number) {
+    return this.http.get(`${this.ROOT_URL}?size=${size}`);
   }
 }
