@@ -6,6 +6,16 @@ h1 {
   text-decoration: underline;
 }
 
+h3 {
+  color: #fcc07d;
+}
+
 h4 {
   color: #f0e7dd;
+  margin-left: 1rem;
+  font-style: italic;
+}
+
+.details {
+  display: flex;
 }

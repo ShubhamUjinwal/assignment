@@ -1,4 +1,4 @@
-<div class="container details">
+<div class="container">
   <div class="row">
     <div class="col-xs-12">
       <h1>{{ product?.blend_name }}</h1>
@@ -6,23 +6,27 @@
   </div>
   <div class="row text-start">
     <div class="row">
-      <div class="col-xs-12">
-        <h4>{{ product?.intensifier }}</h4>
+      <div class="details">
+        <h3>Intensifier: </h3>
+        <h4>{{ product?.intensifier | titlecase}}</h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <h4>{{ product?.notes }}</h4>
+      <div class="details">
+        <h3>Notes: </h3>
+        <h4>{{ product?.notes | titlecase}}</h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <h4>{{ product?.origin }}</h4>
+      <div class="details">
+        <h3>Origin: </h3>
+        <h4>{{ product?.origin | titlecase}}</h4>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <h4>{{ product?.variety }}</h4>
+      <div class="details">
+        <h3>Variety: </h3>
+        <h4>{{ product?.variety | titlecase}}</h4>
       </div>
     </div>
   </div>
