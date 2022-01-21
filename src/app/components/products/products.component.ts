@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Product } from 'src/app/models/product.model';
 
@@ -10,15 +10,19 @@ import { Product } from 'src/app/models/product.model';
 export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
+  totalLength: any;
+  page: number = 1;
+
   constructor(private apiService: ApiService) { }
   selectedProduct!: Product;
 
   ngOnInit(): void {
     this.getProduct();
+    this.totalLength = this.products.length;
   }
   
   getProduct() {
-    this.apiService.get(10).subscribe((res: any) => {
+    this.apiService.get(50).subscribe((res: any) => {
       this.products = res;
       console.log(this.products)
     })
