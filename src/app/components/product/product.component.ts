@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Product } from 'src/app/models/product.model';
 
 
 @Component({
@@ -8,8 +9,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  @Input() blend_name: string = '';
-  @Output() productSelected = new EventEmitter<void>();
+  @Input() product: Product | undefined;
+  @Output() productSelected = new EventEmitter<Product>();
 
   constructor() { }
 
@@ -17,7 +18,7 @@ export class ProductComponent implements OnInit {
   }
 
   onSelected() {
-    this.productSelected.emit();
+    this.productSelected.emit(this.product);
   }
 
 }

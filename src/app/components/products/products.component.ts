@@ -10,15 +10,14 @@ import { Product } from 'src/app/models/product.model';
 export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
-
   constructor(private apiService: ApiService) { }
+  selectedProduct!: Product;
 
   ngOnInit(): void {
     this.getProduct();
   }
   
   getProduct() {
-    console.log(this.products)
     this.apiService.get(10).subscribe((res: any) => {
       this.products = res;
       console.log(this.products)
