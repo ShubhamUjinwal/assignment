@@ -1,0 +1,15 @@
+.list-group-item {
+  background-color: #f0e7dd;
+  text-align: center;
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: #431c05;
+    font-family: "Poppins", sans-serif
+  }
+}
+
+.list-group-item:hover {
+  background-color: #f3dabd;
+}
