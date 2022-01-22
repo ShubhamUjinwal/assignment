@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-center">
+  <div class="products row text-center">
     <div class="col-md-5">
       <app-product
       *ngFor="let list of products | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength}"
@@ -15,6 +15,8 @@
           <h4 class="select-product">Please select a Product</h4>
         </ng-template>
     </div>
-    <pagination-controls class="my-pagination" (pageChange)="page = $event"  ></pagination-controls>
+  </div>
+  <div class="row">
+    <pagination-controls class="my-pagination text-center" (pageChange)="page = $event"  ></pagination-controls>
   </div>
 </div>

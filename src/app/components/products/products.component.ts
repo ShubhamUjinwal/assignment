@@ -24,7 +24,6 @@ export class ProductsComponent implements OnInit {
   getProduct() {
     this.apiService.get(100).subscribe((res: any) => {
       this.products = res;
-      console.log(this.products)
     })
   }
 }
