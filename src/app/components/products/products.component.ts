@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Product } from 'src/app/models/product.model';
+import { select, Store } from '@ngrx/store';
+import { ProductsState } from 'src/app/services/store/products.reducer';
+import { selectProducts } from 'src/app/services/store/products.selector';
+import { Observable } from 'rxjs';
+import { addProducts } from 'src/app/services/store/products.actions';
 
 @Component({
   selector: 'app-products',
@@ -10,10 +15,14 @@ import { Product } from 'src/app/models/product.model';
 export class ProductsComponent implements OnInit {
 
   products: Product[] = [];
+  products$!: Observable<Product[]>;
   totalLength: any;
   page: number = 1;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private store: Store<ProductsState>) {
+    this.products$ = this.store.pipe(select(selectProducts));
+  }
+
   selectedProduct!: Product;
 
   ngOnInit(): void {
@@ -22,8 +31,9 @@ export class ProductsComponent implements OnInit {
   }
   
   getProduct() {
-    this.apiService.get(100).subscribe((res: any) => {
+    this.apiService.get(50).subscribe((res: any) => {
       this.products = res;
+      this.store.dispatch(addProducts(res));
     })
   }
 }
