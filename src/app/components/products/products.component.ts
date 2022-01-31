@@ -4,8 +4,9 @@ import { Product } from 'src/app/models/product.model';
 import { select, Store } from '@ngrx/store';
 import { ProductsState } from 'src/app/services/store/products.reducer';
 import { selectProducts } from 'src/app/services/store/products.selector';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { addProducts } from 'src/app/services/store/products.actions';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-products',
@@ -14,25 +15,23 @@ import { addProducts } from 'src/app/services/store/products.actions';
 })
 export class ProductsComponent implements OnInit {
 
-  products: Product[] = [];
-  products$!: Observable<Product[]>;
+  products$: Observable<Product[]>;
   totalLength: any;
   page: number = 1;
 
   constructor(private apiService: ApiService, private store: Store<ProductsState>) {
-    this.products$ = this.store.pipe(select(selectProducts));
+    this.products$ = this.store.pipe(select(selectProducts))
   }
 
   selectedProduct!: Product;
 
   ngOnInit(): void {
     this.getProduct();
-    this.totalLength = this.products.length;
+    this.totalLength = this.products$.subscribe((data) => this.totalLength = data.length)
   }
   
   getProduct() {
     this.apiService.get(50).subscribe((res: any) => {
-      this.products = res;
       this.store.dispatch(addProducts(res));
     })
   }

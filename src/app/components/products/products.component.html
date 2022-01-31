@@ -1,11 +1,13 @@
 <div class="container">
   <div class="products row text-center">
     <div class="col-md-5">
-      <app-product
-      *ngFor="let list of products | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength}"
-      [product]="list"
-      (productSelected)="selectedProduct = $event"
-      ></app-product>
+      <div *ngIf="products$ | async as product">
+        <app-product
+        *ngFor="let list of product | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength}"
+        [product]="list"
+        (productSelected)="selectedProduct = $event"
+        ></app-product>
+      </div>
     </div>
     <div class="col-md-7 text-center product-details">
       <app-product-details
